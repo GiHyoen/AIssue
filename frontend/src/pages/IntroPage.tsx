@@ -1,4 +1,7 @@
 import React from 'react';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
 import {
   PageWrapper,
   HeroSection,
@@ -18,11 +21,58 @@ import {
   PriceLabel,
   DateLabel,
   LiveIndicator,
-  StartButton
+  ContentWrapper,
+  ChatSection,
+  ChatContainer,
+  ChatIntro,
+  ChatCard,
+  ChatHeader,
+  ChatMessages,
+  ChatBubble,
+  NewsIntroSection,
+  NewsIntroHeader,
+  NewsCardGrid,
+  NewsCardIntro,
+  NewsCardBody,
+  NewsMeta,
+  NewsCardTitle,
+  NewsCardText,
+  ImpactWrapper,
+  ImpactLabel,
+  ImpactBarBg,
+  ImpactBarFg,
+  ChatSectionTitle,
 } from '../styles/IntroStyle';
-import Header from '../components/Header';
+
+const sampleNews = [
+  {
+    category: '경제 · 반도체',
+    time: '2시간 전',
+    title: '삼성전자, 차세대 HBM3E 메모리 양산 돌입',
+    summary:
+      '삼성전자가 업계 최초로 차세대 HBM3E 메모리 반도체 양산을 시작했습니다. AI 서버용 수요 증가로 실적 개선이 기대됩니다.',
+    positive: true,
+    impact: 85,
+  },
+  {
+    category: '경제 · 반도체',
+    time: '4시간 전',
+    title: 'SK하이닉스, 미국 정부와 반도체 보조금 협상 난항',
+    summary:
+      'SK하이닉스가 미국 정부와의 보조금 협상에서 어려움을 겪고 있습니다. 지원 규모 축소 우려로 투자 계획에 차질이 예상됩니다.',
+    positive: false,
+    impact: 70,
+  },
+  // …필요시 더 추가…
+];
+
 
 const IntroPage = () => {
+  const navigate = useNavigate(); // 👈 훅 사용
+
+  const handleStartClick = () => {
+    navigate('/home'); // 👈 클릭 시 /main 이동
+  };
   return (
     <PageWrapper>
       <ChartBackground>
@@ -138,35 +188,92 @@ const IntroPage = () => {
           <ChartPoint cx="1600" cy="450" r="4" fill="#3b82f6" style={{ animationDelay: '4.5s' }} />
         </svg>
       </ChartBackground>
-
       <Header />
+      <ContentWrapper>
+        <HeroSection>
+          <Title>뉴스 속 투자 기회를, AI가 찾아드립니다</Title>
+          <Subtitle>실시간 뉴스 분석과 AI 주가 예측으로 한발 앞선 투자 전략을 경험하세요</Subtitle>
+          <FeatureGrid>
+            <FeatureCard>
+              <FeatureIcon>🔍</FeatureIcon>
+              <FeatureTitle>AI 기반 뉴스 요약 분석</FeatureTitle>
+              <FeatureText>증권 관련 뉴스를 AI가 요약하고, 주가에 미치는 긍·부정 영향도를 시각적으로 분석합니다.</FeatureText>
+            </FeatureCard>
+            <FeatureCard>
+              <FeatureIcon>📈</FeatureIcon>
+              <FeatureTitle>실시간 주식 차트</FeatureTitle>
+              <FeatureText>거래량, 등락률, 관심도 기준으로 정렬된 실시간 주식 차트를 확인해보세요.</FeatureText>
+            </FeatureCard>
+            <FeatureCard>
+              <FeatureIcon>🤖💬</FeatureIcon>
+              <FeatureTitle>AI 투자 비서 챗봇</FeatureTitle>
+              <FeatureText>궁금한 주식 이슈나 종목을 물어보세요. AI가 뉴스 분석과 투자 정보를 실시간으로 제공해드립니다.</FeatureText>
+            </FeatureCard>
+          </FeatureGrid>
+        </HeroSection>
+      </ContentWrapper>
+      {/* ↓ 여기서 “주요 뉴스 분석” 섹션을 삽입 */}
+        <NewsIntroSection>
+          <NewsIntroHeader>AI 기반 뉴스 요약 분석</NewsIntroHeader>
+          <NewsCardGrid>
+            {sampleNews.map((n, idx) => (
+              <NewsCardIntro key={idx}>
+                <NewsCardBody>
+                  <NewsMeta>
+                    <span>{n.category}</span>
+                    <span>{n.time}</span>
+                  </NewsMeta>
+                  <NewsCardTitle>{n.title}</NewsCardTitle>
+                  <NewsCardText>{n.summary}</NewsCardText>
+                  <ImpactWrapper>
+                    <ImpactLabel positive={n.positive}>
+                      {n.positive ? '긍정적' : '부정적'}
+                    </ImpactLabel>
+                    <ImpactBarBg>
+                      <ImpactBarFg percent={n.impact} positive={n.positive} />
+                      <ImpactBarFg percent={n.impact} positive={n.positive} />
+                    </ImpactBarBg>
+                    <span>{n.impact}%</span>
+                  </ImpactWrapper>
+                </NewsCardBody>
+              </NewsCardIntro>
+            ))}
+          </NewsCardGrid>
+        </NewsIntroSection>
+      <ChatSection>
+        <ChatSectionTitle>AI 투자 비서 챗봇</ChatSectionTitle>
+          <ChatContainer>
+            {/* 왼쪽 텍스트 */}
+            <ChatIntro>
+              <p>AIssue의 AI 챗봇은 최신 증권 뉴스와 시장 동향을 분석하여 투자자에게 필요한 정보를 대화로 제공합니다.</p>
+              <ul>
+                <li>특정 종목에 대한 최신 뉴스와 분석</li>
+                <li>업종별 시장 동향 및 전망</li>
+                <li>관심 종목의 실시간 주가 정보</li>
+                <li>투자 관련 질문에 대한 전문적인 답변</li>
+              </ul>
+            </ChatIntro>
 
-      <HeroSection>
-        <Title>뉴스 속 투자 기회를, AI가 찾아드립니다</Title>
-        <Subtitle>실시간 뉴스 분석과 AI 주가 예측으로 한발 앞선 투자 전략을 경험하세요</Subtitle>
-
-        <FeatureGrid>
-          <FeatureCard>
-            <FeatureIcon>🤖</FeatureIcon>
-            <FeatureTitle>자연어 기반 뉴스 요약</FeatureTitle>
-            <FeatureText>복잡한 뉴스를 핵심만 간추려 이해하기 쉽게 요약합니다.</FeatureText>
-          </FeatureCard>
-
-          <FeatureCard>
-            <FeatureIcon>⚡</FeatureIcon>
-            <FeatureTitle>실시간 주가 예측</FeatureTitle>
-            <FeatureText>딥러닝 기반으로 빠르고 정확한 주가 예측을 제공합니다.</FeatureText>
-          </FeatureCard>
-
-          <FeatureCard>
-            <FeatureIcon>🎯</FeatureIcon>
-            <FeatureTitle>마우스 오버 상세분석</FeatureTitle>
-            <FeatureText>뉴스 카드에 마우스를 올리면 주가 영향도와 분석이 표시됩니다.</FeatureText>
-          </FeatureCard>
-        </FeatureGrid>
-        
-        <StartButton>시작하기</StartButton>
-      </HeroSection>
+            {/* 오른쪽 챗 화면 */}
+            <ChatCard>
+              <ChatHeader>AIssue 투자 비서 • 실시간 접속 중</ChatHeader>
+              <ChatMessages>
+                <ChatBubble sender="ai">
+                  안녕하세요! AIssue 투자 비서입니다. 어떤 주식 정보가 필요하신가요?
+                </ChatBubble>
+                <ChatBubble sender="user">
+                  삼성전자 최근 뉴스 알려줘
+                </ChatBubble>
+                <ChatBubble sender="ai">
+                  삼성전자의 최근 주요 뉴스입니다:<br/>
+                  1. 차세대 HBM3E 메모리 양산 시작 (2시간 전)<br/>
+                  2. 갤럭시 S24 판매량 20% 증가 (5시간 전)…
+                </ChatBubble>
+              </ChatMessages>
+            </ChatCard>
+          </ChatContainer>
+        </ChatSection>
+      <Footer />
     </PageWrapper>
   );
 };
