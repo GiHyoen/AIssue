@@ -1,5 +1,37 @@
 import styled, { keyframes } from 'styled-components';
 
+const dash = keyframes`
+  to {
+    stroke-dashoffset: 0;
+  }
+`;
+
+const fadeIn = keyframes`
+  to {
+    opacity: 1;
+  }
+`;
+
+const slideUp = keyframes`
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const blink = keyframes`
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+`;
+
 export const PageWrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
@@ -75,37 +107,6 @@ export const FeatureText = styled.p`
   line-height: 1.5;
 `;
 
-const dash = keyframes`
-  to {
-    stroke-dashoffset: 0;
-  }
-`;
-
-const fadeIn = keyframes`
-  to {
-    opacity: 1;
-  }
-`;
-
-const slideUp = keyframes`
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-
-const blink = keyframes`
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.8;
-  }
-`;
 
 export const ChartBackground = styled.div`
   position: fixed;
@@ -190,103 +191,6 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   background: rgba(255, 255, 255, 0.7);
 `;
-
-// …기존 import, keyframes, 다른 styled 컴포넌트들 위에…
-
-// 챗봇 섹션 전체 래퍼
-
-
-export const ChatSection = styled.section`
-  position: relative;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 80px 20px;
-`;
-
-export const ChatSectionTitle = styled.h2`
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #222;
-  margin-bottom: 40px;
-  text-align: center; 
-`;
-
-
-// 좌/우 컨테이너 그리드
-export const ChatContainer = styled.div`
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  align-items: center;
-`;
-
-// 왼쪽 텍스트 영역
-export const ChatIntro = styled.div`
-  h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #1f2937;
-  }
-  p {
-    font-size: 1rem;
-    color: #4b5563;
-    line-height: 1.6;
-    margin-bottom: 24px;
-    font-weight: 700;
-  }
-  ul {
-    list-style: disc inside;
-    color: #4b5563;
-    margin-bottom: 32px;
-    li {
-      margin-bottom: 8px;
-    }
-  }
-`;
-
-// 오른쪽 챗 카드
-export const ChatCard = styled.div`
-  background: #f9fafb;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  overflow: hidden;
-`;
-
-// 챗 헤더
-export const ChatHeader = styled.div`
-  background: #2563eb;
-  color: #fff;
-  padding: 16px;
-  font-weight: 600;
-`;
-
-// 메시지 리스트
-export const ChatMessages = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-height: 320px;
-  overflow-y: auto;
-`;
-
-// 각 메시지 버블
-export const ChatBubble = styled.div<{ sender: 'ai' | 'user' }>`
-  max-width: 80%;
-  padding: 12px 16px;
-  border-radius: 16px;
-  background: ${({ sender }) => sender === 'ai' ? '#e0f2fe' : '#f3f4f6'};
-  color: #1f2937;
-  align-self: ${({ sender }) => sender === 'ai' ? 'flex-start' : 'flex-end'};
-  font-size: 0.95rem;
-  line-height: 1.4;
-`;
-
-// …기존 import, keyframes 등…
 
 // 뉴스 분석 섹션 전체 래퍼
 export const NewsIntroSection = styled.section`
@@ -394,4 +298,94 @@ export const ImpactBarFg = styled.div<{
   background-color: ${props =>
     props.positive ? '#F87171' /* 긍정 빨강 */ : '#2563EB' /* 부정 파랑 */};
   transition: width 0.5s ease;
+`;
+
+export const ChatSection = styled.section`
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 80px 20px;
+`;
+
+export const ChatSectionTitle = styled.h2`
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 40px;
+  text-align: center; 
+`;
+
+
+// 좌/우 컨테이너 그리드
+export const ChatContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  align-items: center;
+`;
+
+// 왼쪽 텍스트 영역
+export const ChatIntro = styled.div`
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #1f2937;
+  }
+  p {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+  ul {
+    list-style: disc inside;
+    color: #4b5563;
+    margin-bottom: 32px;
+    li {
+      margin-bottom: 8px;
+    }
+  }
+`;
+
+// 오른쪽 챗 카드
+export const ChatCard = styled.div`
+  background: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  overflow: hidden;
+`;
+
+// 챗 헤더
+export const ChatHeader = styled.div`
+  background: #2563eb;
+  color: #fff;
+  padding: 16px;
+  font-weight: 600;
+`;
+
+// 메시지 리스트
+export const ChatMessages = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 320px;
+  overflow-y: auto;
+`;
+
+// 각 메시지 버블
+export const ChatBubble = styled.div<{ sender: 'ai' | 'user' }>`
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: ${({ sender }) => sender === 'ai' ? '#e0f2fe' : '#f3f4f6'};
+  color: #1f2937;
+  align-self: ${({ sender }) => sender === 'ai' ? 'flex-start' : 'flex-end'};
+  font-size: 0.95rem;
+  line-height: 1.4;
 `;

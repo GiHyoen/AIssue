@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 
 // 타입 정의
@@ -325,6 +326,9 @@ const HomePage: React.FC = () => {
 
   const currentStockData: StockItem[] = stockData[activeTab];
 
+=======
+const HomePage = () => {
+>>>>>>> main
   return (
     <div style={styles.container}>
       {/* Navigation */}
