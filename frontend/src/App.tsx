@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import IntroPage from './pages/IntroPage';
-import HomePage from './pages/HomePage'; // 나중에 만들 예정
+import HomePage from './pages/HomePage';
 import Header from './components/Header';
 
 const App = () => {

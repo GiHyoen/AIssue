@@ -7,6 +7,7 @@ import {
   HeroSection,
   Title,
   Subtitle,
+  StartButton,
   FeatureGrid,
   FeatureCard,
   FeatureIcon,
@@ -29,6 +30,7 @@ import {
   ChatHeader,
   ChatMessages,
   ChatBubble,
+  ChatSectionTitle,
   NewsIntroSection,
   NewsIntroHeader,
   NewsCardGrid,
@@ -41,7 +43,6 @@ import {
   ImpactLabel,
   ImpactBarBg,
   ImpactBarFg,
-  ChatSectionTitle,
 } from '../styles/IntroStyle';
 
 const sampleNews = [
@@ -273,6 +274,9 @@ const IntroPage = () => {
             </ChatCard>
           </ChatContainer>
         </ChatSection>
+        <StartButton onClick={handleStartClick}>
+          시작하기
+        </StartButton>
       <Footer />
     </PageWrapper>
   );
