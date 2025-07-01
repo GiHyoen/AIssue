@@ -67,7 +67,6 @@ const sampleNews = [
   // …필요시 더 추가…
 ];
 
-
 const IntroPage = () => {
   const navigate = useNavigate(); // 👈 훅 사용
 
@@ -114,7 +113,7 @@ const IntroPage = () => {
             opacity="0.5"
             style={{ animationDelay: '0.5s' }} 
           />
-          
+
           {/* 볼륨 차트 (하단) */}
           <g opacity="0.3">
             <VolumeBar x="100" y="850" width="20" height="30" fill="#3b82f6" style={{ animationDelay: '0.1s' }} />
@@ -213,7 +212,7 @@ const IntroPage = () => {
           </FeatureGrid>
         </HeroSection>
       </ContentWrapper>
-      {/* ↓ 여기서 “주요 뉴스 분석” 섹션을 삽입 */}
+      {/* ↓ 여기서 "주요 뉴스 분석" 섹션을 삽입 */}
         <NewsIntroSection>
           <NewsIntroHeader>AI 기반 뉴스 요약 분석</NewsIntroHeader>
           <NewsCardGrid>
@@ -274,9 +273,121 @@ const IntroPage = () => {
             </ChatCard>
           </ChatContainer>
         </ChatSection>
+<<<<<<< Updated upstream
         <StartButton onClick={handleStartClick}>
           시작하기
         </StartButton>
+=======
+
+         <div style={{
+  background: 'rgba(255, 255, 255, 0.95)',
+  backdropFilter: 'blur(10px)',
+  padding: '4rem 2rem',
+  textAlign: 'center',
+  position: 'relative',
+  overflow: 'hidden'
+}}>
+  {/* 왼쪽 차트 라인 */}
+  <svg style={{
+    position: 'absolute',
+    top: '20%',
+    left: '5%',
+    width: '200px',
+    height: '150px',
+    opacity: 0.08,
+    zIndex: 0
+  }} viewBox="0 0 200 150">
+    <path d="M0,120 Q30,100 60,80 T120,60 T180,40" 
+          fill="none" stroke="#3b82f6" strokeWidth="2"/>
+    <circle cx="60" cy="80" r="3" fill="#3b82f6"/>
+    <circle cx="120" cy="60" r="3" fill="#3b82f6"/>
+    <circle cx="180" cy="40" r="3" fill="#3b82f6"/>
+  </svg>
+
+  {/* 오른쪽 캔들스틱 차트 */}
+  <svg style={{
+    position: 'absolute',
+    bottom: '10%',
+    right: '5%',
+    width: '250px',
+    height: '180px',
+    opacity: 0.12,
+    zIndex: 0
+  }} viewBox="0 0 250 180">
+    {/* 상승 캔들 */}
+    <rect x="20" y="100" width="12" height="50" fill="#34d399"/>
+    <line x1="26" y1="80" x2="26" y2="170" stroke="#34d399" strokeWidth="2"/>
+    
+    <rect x="50" y="90" width="12" height="60" fill="#34d399"/>
+    <line x1="56" y1="70" x2="56" y2="170" stroke="#34d399" strokeWidth="2"/>
+    
+    {/* 하락 캔들 */}
+    <rect x="80" y="80" width="12" height="70" fill="#f87171"/>
+    <line x1="86" y1="60" x2="86" y2="170" stroke="#f87171" strokeWidth="2"/>
+    
+    <rect x="110" y="70" width="12" height="80" fill="#f87171"/>
+    <line x1="116" y1="50" x2="116" y2="170" stroke="#f87171" strokeWidth="2"/>
+    
+    {/* 상승 캔들 */}
+    <rect x="140" y="60" width="12" height="90" fill="#34d399"/>
+    <line x1="146" y1="40" x2="146" y2="170" stroke="#34d399" strokeWidth="2"/>
+    
+    <rect x="170" y="50" width="12" height="100" fill="#34d399"/>
+    <line x1="176" y1="30" x2="176" y2="170" stroke="#34d399" strokeWidth="2"/>
+    
+    <rect x="200" y="45" width="12" height="105" fill="#34d399"/>
+    <line x1="206" y1="25" x2="206" y2="170" stroke="#34d399" strokeWidth="2"/>
+  </svg>
+
+  <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+    <h2 style={{
+      fontSize: '2.5rem',
+      fontWeight: 'bold',
+      marginBottom: '1.5rem',
+      color: '#1f2937'
+    }}>
+      지금 바로 시작하세요
+    </h2>
+    <p style={{
+      fontSize: '1.2rem',
+      lineHeight: '1.6',
+      marginBottom: '2.5rem',
+      color: '#555'
+    }}>
+      AI가 분석한 실시간 뉴스와 투자 기회를 놓치지 마세요.<br/>
+      전문가 수준의 투자 인사이트를 무료로 경험해보실 수 있습니다.
+    </p>
+    <button
+      onClick={handleStartClick}
+      style={{
+        background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+        color: 'white',
+        border: 'none',
+        padding: '1.2rem 3rem',
+        fontSize: '1.3rem',
+        fontWeight: 'bold',
+        borderRadius: '50px',
+        cursor: 'pointer',
+        boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)',
+        transition: 'all 0.3s ease',
+        marginBottom: '1rem'
+      }}
+      onMouseOver={(e) => {
+        const target = e.target as HTMLElement;
+        target.style.transform = 'translateY(-3px)';
+        target.style.boxShadow = '0 15px 40px rgba(59, 130, 246, 0.4)';
+      }}
+      onMouseOut={(e) => {
+        const target = e.target as HTMLElement;
+        target.style.transform = 'translateY(0)';
+        target.style.boxShadow = '0 10px 30px rgba(59, 130, 246, 0.3)';
+      }}
+    >
+      투자 시작하기
+    </button>
+  </div>
+</div>
+>>>>>>> Stashed changes
       <Footer />
     </PageWrapper>
   );
