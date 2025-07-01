@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 
 // 타입 정의
@@ -37,69 +36,10 @@ const HomePage: React.FC = () => {
       minHeight: '100vh',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     },
-    nav: {
-      borderBottom: '1px solid #e5e7eb',
-      backgroundColor: 'white',
-      position: 'sticky' as const,
-      top: 0,
-      zIndex: 50,
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
-    },
-    navContainer: {
-      maxWidth: '1280px',
-      margin: '0 auto',
-      padding: '0 24px'
-    },
-    navContent: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      height: '64px'
-    },
-    logo: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '12px'
-    },
-    logoIcon: {
-      width: '32px',
-      height: '32px',
-      backgroundColor: '#3b82f6',
-      borderRadius: '8px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    logoText: {
-      fontSize: '20px',
-      fontWeight: 'bold',
-      color: '#111827'
-    },
-    navMenu: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '32px'
-    },
-    navLink: {
-      color: '#6b7280',
-      fontWeight: '500',
-      textDecoration: 'none',
-      transition: 'color 0.2s'
-    },
-    startButton: {
-      backgroundColor: '#3b82f6',
-      color: 'white',
-      padding: '8px 24px',
-      borderRadius: '8px',
-      fontWeight: '600',
-      border: 'none',
-      cursor: 'pointer',
-      transition: 'background-color 0.2s'
-    },
     mainContainer: {
       maxWidth: '1280px',
       margin: '0 auto',
-      padding: '32px 24px'
+      padding: '100px 24px 32px 24px' // 상단 패딩 100px 추가
     },
     gridContainer: {
       display: 'grid',
@@ -173,7 +113,7 @@ const HomePage: React.FC = () => {
     },
     rightSection: {
       position: 'sticky' as const,
-      top: '96px',
+      top: '120px', // 헤더 높이를 고려하여 조정
       height: 'fit-content'
     },
     newsContainer: {
@@ -326,37 +266,8 @@ const HomePage: React.FC = () => {
 
   const currentStockData: StockItem[] = stockData[activeTab];
 
-=======
-const HomePage = () => {
->>>>>>> main
   return (
     <div style={styles.container}>
-      {/* Navigation */}
-      <nav style={styles.nav}>
-        <div style={styles.navContainer}>
-          <div style={styles.navContent}>
-            <div style={styles.logo}>
-              <div style={styles.logoIcon}>
-                <span style={{ color: 'white', fontWeight: 'bold', fontSize: '14px' }}>AI</span>
-              </div>
-              <span style={styles.logoText}>AIssue</span>
-            </div>
-            <div style={styles.navMenu}>
-              <a href="#" style={styles.navLink}>투자</a>
-              <a href="#" style={styles.navLink}>뉴스</a>
-              <a href="#" style={styles.navLink}>차트</a>
-              <button 
-                style={styles.startButton}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
-              >
-                시작하기
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* Main Content */}
       <div style={styles.mainContainer}>
         <div style={styles.gridContainer}>
@@ -365,7 +276,7 @@ const HomePage = () => {
             {/* Header */}
             <div style={styles.header}>
               <h1 style={styles.title}>실시간 주식 현황</h1>
-              <p style={styles.subtitle}></p>
+              <p style={styles.subtitle}>AI가 분석한 주요 종목들을 확인해보세요</p>
             </div>
 
             {/* Tab Navigation */}
@@ -461,7 +372,7 @@ const HomePage = () => {
             {/* Header */}
             <div style={styles.header}>
               <h2 style={{ ...styles.title, fontSize: '24px' }}>경제 뉴스</h2>
-              <p style={styles.subtitle}></p>
+              <p style={styles.subtitle}>AI가 선별한 주요 뉴스</p>
             </div>
 
             {/* News Cards */}

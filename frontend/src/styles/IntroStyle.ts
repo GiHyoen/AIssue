@@ -389,3 +389,42 @@ export const ChatBubble = styled.div<{ sender: 'ai' | 'user' }>`
   font-size: 0.95rem;
   line-height: 1.4;
 `;
+
+
+export const CTASection = styled.section`
+  background-color: white;
+  padding: 5rem 2rem;
+  border-radius: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  max-width: 800px;
+  margin: 4rem auto 0 auto;
+  backdrop-filter: blur(12px);
+`;
+
+export const CTATitle = styled.h2`
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937; /* Tailwind 기준 text-gray-900 */
+  margin-bottom: 1rem;
+`;
+
+export const CTASubtitle = styled.p`
+  font-size: 1.125rem;
+  color: #6b7280; /* Tailwind 기준 text-gray-600 */
+  margin-bottom: 2rem;
+`;
+
+export const CTAButton = styled.button`
+  background-color: #3b82f6; /* Tailwind 기준 bg-blue-500 */
+  color: white;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #2563eb; /* Tailwind 기준 hover:bg-blue-600 */
+  }
+`;
