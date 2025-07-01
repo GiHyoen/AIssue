@@ -389,3 +389,47 @@ export const ChatBubble = styled.div<{ sender: 'ai' | 'user' }>`
   font-size: 0.95rem;
   line-height: 1.4;
 `;
+
+// CTA 섹션 전체 래퍼
+export const CTASection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.7);
+`;
+
+// 크게 보이는 제목
+export const CTATitle = styled.h2`
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937; /* 다크 그레이 */
+  margin-bottom: 16px;
+`;
+
+// 부제목
+export const CTASubtitle = styled.p`
+  font-size: 1rem;
+  color: #4b5563; /* 미디엄 그레이 */
+  margin-bottom: 32px;
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.5;
+`;
+
+// 버튼
+export const CTAButton = styled.button`
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+  padding: 14px 36px;
+  border: none;
+  border-radius: 32px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+  }
+`;
