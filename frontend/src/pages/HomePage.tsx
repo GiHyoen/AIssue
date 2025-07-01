@@ -1,6 +1,22 @@
 import React, { useState } from 'react';
+import {
+  PageWrapper,
+  MainContainer,
+  Grid,
+  LeftSection,
+  SectionHeader,
+  TabContainer,
+  TabButton,
+  StockTable,
+  TableHead,
+  TableBody,
+  RightSection,
+  NewsCard,
+  NewsDot,
+  NewsContent,
+  MoreNewsButton,
+} from '../styles/HomeStyle';
 
-// 타입 정의
 interface StockItem {
   rank: number;
   name: string;
@@ -20,167 +36,21 @@ interface NewsItem {
 
 type TabType = 'gainers' | 'losers' | 'volume';
 
-interface StockData {
-  gainers: StockItem[];
-  losers: StockItem[];
-  volume: StockItem[];
-}
-
-const HomePage: React.FC = () => {
+export const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('gainers');
 
-  // 스타일 객체들
-  const styles = {
-    container: {
-      backgroundColor: 'white',
-      minHeight: '100vh',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
-    },
-    mainContainer: {
-      maxWidth: '1280px',
-      margin: '0 auto',
-      padding: '100px 24px 32px 24px' // 상단 패딩 100px 추가
-    },
-    gridContainer: {
-      display: 'grid',
-      gridTemplateColumns: '2fr 1fr',
-      gap: '32px'
-    },
-    leftSection: {
-      display: 'flex',
-      flexDirection: 'column' as const
-    },
-    header: {
-      marginBottom: '24px'
-    },
-    title: {
-      fontSize: '30px',
-      fontWeight: 'bold',
-      color: '#111827',
-      marginBottom: '8px'
-    },
-    subtitle: {
-      color: '#6b7280'
-    },
-    tabContainer: {
-      display: 'flex',
-      gap: '8px',
-      marginBottom: '24px'
-    },
-    tabButton: {
-      padding: '12px 24px',
-      borderRadius: '12px',
-      fontWeight: '600',
-      border: 'none',
-      cursor: 'pointer',
-      transition: 'all 0.2s'
-    },
-    activeTab: {
-      backgroundColor: '#3b82f6',
-      color: 'white'
-    },
-    inactiveTab: {
-      backgroundColor: '#f8fafc',
-      color: '#64748b'
-    },
-    tableContainer: {
-      backgroundColor: 'white',
-      borderRadius: '16px',
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
-      overflow: 'hidden'
-    },
-    tableHeader: {
-      backgroundColor: '#f9fafb',
-      padding: '16px 24px',
-      borderBottom: '1px solid #e5e7eb'
-    },
-    tableHeaderRow: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 2fr 1.5fr 1fr 1fr',
-      gap: '16px',
-      fontSize: '14px',
-      fontWeight: '600',
-      color: '#374151'
-    },
-    stockRow: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 2fr 1.5fr 1fr 1fr',
-      gap: '16px',
-      padding: '16px 24px',
-      borderBottom: '1px solid #f3f4f6',
-      transition: 'background-color 0.2s',
-      cursor: 'pointer'
-    },
-    rightSection: {
-      position: 'sticky' as const,
-      top: '120px', // 헤더 높이를 고려하여 조정
-      height: 'fit-content'
-    },
-    newsContainer: {
-      display: 'flex',
-      flexDirection: 'column' as const,
-      gap: '16px'
-    },
-    newsCard: {
-      backgroundColor: 'white',
-      borderRadius: '16px',
-      padding: '24px',
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
-      transition: 'all 0.2s',
-      cursor: 'pointer'
-    },
-    newsCardContent: {
-      display: 'flex',
-      alignItems: 'flex-start',
-      gap: '12px'
-    },
-    newsDot: {
-      width: '8px',
-      height: '8px',
-      borderRadius: '50%',
-      marginTop: '8px',
-      flexShrink: 0
-    },
-    newsTitle: {
-      fontWeight: '600',
-      color: '#111827',
-      lineHeight: '1.4',
-      marginBottom: '8px'
-    },
-    newsInfo: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '12px',
-      fontSize: '14px',
-      color: '#6b7280'
-    },
-    moreButton: {
-      width: '100%',
-      marginTop: '24px',
-      padding: '16px',
-      backgroundColor: '#f9fafb',
-      color: '#374151',
-      borderRadius: '16px',
-      fontWeight: '600',
-      border: 'none',
-      cursor: 'pointer',
-      transition: 'background-color 0.2s'
-    }
-  };
-
-  // Stock data for different categories
-  const stockData: StockData = {
+  const stockData: Record<TabType, StockItem[]> = {
     gainers: [
-      { rank: 1, name: '다날', price: '6,400원', change: '+13.0%', volume: '2.1M', color: '#ef4444' },
-      { rank: 2, name: '지에프씨생명과학', price: '34,950원', change: '+7.3%', volume: '1.8M', color: '#ef4444' },
-      { rank: 3, name: '카카오페이', price: '81,200원', change: '+5.8%', volume: '1.5M', color: '#ef4444' },
-      { rank: 4, name: '카카오', price: '61,900원', change: '+3.1%', volume: '1.2M', color: '#ef4444' },
-      { rank: 5, name: '삼성전자', price: '60,800원', change: '+1.6%', volume: '3.2M', color: '#ef4444' },
-      { rank: 6, name: 'NAVER', price: '264,500원', change: '+0.9%', volume: '2.8M', color: '#ef4444' },
-      { rank: 7, name: 'LG에너지솔루션', price: '412,000원', change: '+0.7%', volume: '1.9M', color: '#ef4444' },
-      { rank: 8, name: '현대차', price: '198,500원', change: '+0.5%', volume: '2.3M', color: '#ef4444' },
-      { rank: 9, name: 'SK하이닉스', price: '289,000원', change: '+0.3%', volume: '2.5M', color: '#ef4444' },
-      { rank: 10, name: 'LG화학', price: '425,000원', change: '+0.1%', volume: '1.7M', color: '#ef4444' }
+      { rank: 1, name: '두산에너빌리티', price: '68,100원', change: '-3.2%', volume: '1.5M', color: '#3b82f6' },
+      { rank: 2, name: 'POSCO홀딩스', price: '385,000원', change: '-2.8%', volume: '1.2M', color: '#3b82f6' },
+      { rank: 3, name: '기아', price: '89,400원', change: '-2.1%', volume: '2.1M', color: '#3b82f6' },
+      { rank: 4, name: '셀트리온', price: '189,500원', change: '-1.9%', volume: '1.8M', color: '#3b82f6' },
+      { rank: 5, name: '한국전력', price: '21,850원', change: '-1.4%', volume: '3.5M', color: '#3b82f6' },
+      { rank: 6, name: '삼성바이오로직스', price: '789,000원', change: '-1.2%', volume: '0.8M', color: '#3b82f6' },
+      { rank: 7, name: '카카오뱅크', price: '26,300원', change: '-0.9%', volume: '2.2M', color: '#3b82f6' },
+      { rank: 8, name: '네이버파이낸셜', price: '45,200원', change: '-0.7%', volume: '1.6M', color: '#3b82f6' },
+      { rank: 9, name: '크래프톤', price: '198,000원', change: '-0.5%', volume: '1.1M', color: '#3b82f6' },
+      { rank: 10, name: '엔씨소프트', price: '245,500원', change: '-0.3%', volume: '0.9M', color: '#3b82f6' }
     ],
     losers: [
       { rank: 1, name: '두산에너빌리티', price: '68,100원', change: '-3.2%', volume: '1.5M', color: '#3b82f6' },
@@ -253,172 +123,80 @@ const HomePage: React.FC = () => {
     }
   ];
 
-  const handleTabClick = (tab: TabType): void => {
-    setActiveTab(tab);
-  };
-
-  const getTabButtonStyle = (tab: TabType) => {
-    return {
-      ...styles.tabButton,
-      ...(activeTab === tab ? styles.activeTab : styles.inactiveTab)
-    };
-  };
-
-  const currentStockData: StockItem[] = stockData[activeTab];
+  const currentStock = stockData[activeTab];
 
   return (
-    <div style={styles.container}>
-      {/* Main Content */}
-      <div style={styles.mainContainer}>
-        <div style={styles.gridContainer}>
-          {/* Left Section - Stock Rankings */}
-          <div style={styles.leftSection}>
-            {/* Header */}
-            <div style={styles.header}>
-              <h1 style={styles.title}>실시간 주식 현황</h1>
-              <p style={styles.subtitle}>AI가 분석한 주요 종목들을 확인해보세요</p>
-            </div>
+    <PageWrapper>
+      <MainContainer>
+        <Grid>
+          {/* ── 왼쪽: 실시간 주식 현황 ── */}
+          <LeftSection>
+            <SectionHeader>
+              <h1>실시간 주식 현황</h1>
+              <p>AI가 분석한 주요 종목들을 확인해보세요</p>
+            </SectionHeader>
 
-            {/* Tab Navigation */}
-            <div style={styles.tabContainer}>
-              <button 
-                onClick={() => handleTabClick('gainers')}
-                style={getTabButtonStyle('gainers')}
-                onMouseOver={(e) => {
-                  if (activeTab !== 'gainers') {
-                    e.currentTarget.style.backgroundColor = '#f1f5f9';
-                  }
-                }}
-                onMouseOut={(e) => {
-                  if (activeTab !== 'gainers') {
-                    e.currentTarget.style.backgroundColor = '#f8fafc';
-                  }
-                }}
-              >
+            <TabContainer>
+              <TabButton active={activeTab === 'gainers'} onClick={() => setActiveTab('gainers')}>
                 📈 상승률 TOP
-              </button>
-              <button 
-                onClick={() => handleTabClick('losers')}
-                style={getTabButtonStyle('losers')}
-                onMouseOver={(e) => {
-                  if (activeTab !== 'losers') {
-                    e.currentTarget.style.backgroundColor = '#f1f5f9';
-                  }
-                }}
-                onMouseOut={(e) => {
-                  if (activeTab !== 'losers') {
-                    e.currentTarget.style.backgroundColor = '#f8fafc';
-                  }
-                }}
-              >
+              </TabButton>
+              <TabButton active={activeTab === 'losers'} onClick={() => setActiveTab('losers')}>
                 📉 하락률 TOP
-              </button>
-              <button 
-                onClick={() => handleTabClick('volume')}
-                style={getTabButtonStyle('volume')}
-                onMouseOver={(e) => {
-                  if (activeTab !== 'volume') {
-                    e.currentTarget.style.backgroundColor = '#f1f5f9';
-                  }
-                }}
-                onMouseOut={(e) => {
-                  if (activeTab !== 'volume') {
-                    e.currentTarget.style.backgroundColor = '#f8fafc';
-                  }
-                }}
-              >
+              </TabButton>
+              <TabButton active={activeTab === 'volume'} onClick={() => setActiveTab('volume')}>
                 💰 거래량 TOP
-              </button>
-            </div>
+              </TabButton>
+            </TabContainer>
 
-            {/* Stock Table */}
-            <div style={styles.tableContainer}>
-              {/* Table Header */}
-              <div style={styles.tableHeader}>
-                <div style={styles.tableHeaderRow}>
-                  <div>순위</div>
-                  <div>종목명</div>
-                  <div>현재가</div>
-                  <div>등락률</div>
-                  <div>거래량</div>
-                </div>
-              </div>
-
-              {/* Table Body */}
-              <div>
-                {currentStockData.map((stock: StockItem, index: number) => (
-                  <div 
-                    key={stock.rank}
-                    style={{
-                      ...styles.stockRow,
-                      borderBottom: index < currentStockData.length - 1 ? '1px solid #f3f4f6' : 'none'
-                    }}
-                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f8fafc'}
-                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'white'}
-                  >
-                    <div style={{ fontWeight: 'bold', color: '#3b82f6' }}>{stock.rank}</div>
-                    <div style={{ fontWeight: '600', color: '#111827' }}>{stock.name}</div>
-                    <div style={{ fontWeight: '600', color: '#111827' }}>{stock.price}</div>
-                    <div style={{ fontWeight: 'bold', color: stock.color }}>{stock.change}</div>
-                    <div style={{ color: '#6b7280' }}>{stock.volume}</div>
-                  </div>
+            <StockTable>
+              <TableHead>
+                <tr>
+                  <th>순위</th>
+                  <th>종목명</th>
+                  <th>현재가</th>
+                  <th>등락률</th>
+                  <th>거래량</th>
+                </tr>
+              </TableHead>
+              <TableBody>
+                {currentStock.map((stock) => (
+                  <tr key={stock.rank}>
+                    <td style={{ color: '#3b82f6', fontWeight: 700 }}>{stock.rank}</td>
+                    <td>{stock.name}</td>
+                    <td>{stock.price}</td>
+                    <td style={{ color: stock.color, fontWeight: 600 }}>{stock.change}</td>
+                    <td>{stock.volume}</td>
+                  </tr>
                 ))}
-              </div>
-            </div>
-          </div>
+              </TableBody>
+            </StockTable>
+          </LeftSection>
 
-          {/* Right Section - News Cards */}
-          <div style={styles.rightSection}>
-            {/* Header */}
-            <div style={styles.header}>
-              <h2 style={{ ...styles.title, fontSize: '24px' }}>경제 뉴스</h2>
-              <p style={styles.subtitle}>AI가 선별한 주요 뉴스</p>
-            </div>
+          {/* ── 오른쪽: 경제 뉴스 ── */}
+          <RightSection>
+            <SectionHeader>
+              <h1>경제 뉴스</h1>
+              <p>AI가 선별한 주요 뉴스</p>
+            </SectionHeader>
 
-            {/* News Cards */}
-            <div style={styles.newsContainer}>
-              {newsData.map((news: NewsItem) => (
-                <div 
-                  key={news.id}
-                  style={styles.newsCard}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.08)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.06)';
-                  }}
-                >
-                  <div style={styles.newsCardContent}>
-                    <div style={{ ...styles.newsDot, backgroundColor: news.color }}></div>
-                    <div>
-                      <h3 style={styles.newsTitle}>
-                        {news.title}
-                      </h3>
-                      <div style={styles.newsInfo}>
-                        <span>{news.source}</span>
-                        <span>•</span>
-                        <span>{news.time}</span>
-                      </div>
-                    </div>
+            {newsData.map((n) => (
+              <NewsCard key={n.id}>
+                <NewsDot color={n.color} />
+                <NewsContent>
+                  <div className="title">{n.title}</div>
+                  <div className="info">
+                    <span>{n.source}</span>
+                    <span>∙</span>
+                    <span>{n.time}</span>
                   </div>
-                </div>
-              ))}
-            </div>
-
-            {/* More News Button */}
-            <button 
-              style={styles.moreButton}
-              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
-              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f9fafb'}
-            >
-              더 많은 뉴스 보기
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+                </NewsContent>
+              </NewsCard>
+            ))}
+            <MoreNewsButton>더 많은 뉴스 보기</MoreNewsButton>
+          </RightSection>
+        </Grid>
+      </MainContainer>
+    </PageWrapper>
   );
 };
 
