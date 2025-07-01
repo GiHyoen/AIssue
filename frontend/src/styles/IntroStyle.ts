@@ -163,16 +163,20 @@ export const LiveIndicator = styled.circle`
 `;
 
 export const StartButton = styled.button`
+  width: 200px;
+  height: 70px;
   background: linear-gradient(to right, #2563eb, #06b6d4);
   color: white;
   padding: 12px 32px;
   border-radius: 8px;
-  font-weight: 500;
+  font-weight: 800;
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
   margin-top: 40px;
+  display: block;
+  margin: 4rem auto;
   
   &:hover {
     transform: translateY(-3px);
@@ -180,16 +184,11 @@ export const StartButton = styled.button`
   }
 `;
 
-export const MainContentWrapper = styled.main`
-  flex: 1;  // 남은 공간 채움 → Footer가 밀려 내려감
-  position: relative;
-  z-index: 1;
-`;
-
 export const ContentWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: rgba(255, 255, 255, 0.7);
 `;
 
 // …기존 import, keyframes, 다른 styled 컴포넌트들 위에…
@@ -200,7 +199,7 @@ export const ContentWrapper = styled.div`
 export const ChatSection = styled.section`
   position: relative;
   z-index: 10;
-  background: rgba(255, 255, 255, 0);
+  background: rgba(255, 255, 255, 0.7);
   padding: 80px 20px;
 `;
 
@@ -291,7 +290,7 @@ export const ChatBubble = styled.div<{ sender: 'ai' | 'user' }>`
 
 // 뉴스 분석 섹션 전체 래퍼
 export const NewsIntroSection = styled.section`
-  background: rgba(255, 255, 255, 0);
+  background: rgba(255, 255, 255, 0.7);
   padding: 80px 20px;
   position: relative;
   z-index: 10;
