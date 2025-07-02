@@ -391,14 +391,13 @@ export const ChatBubble = styled.div<{ sender: 'ai' | 'user' }>`
 `;
 
 export const CTASection = styled.section`
-  background-color: white;
+  background: rgba(255, 255, 255, 0.7);
   padding: 5rem 2rem;
   border-radius: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   text-align: center;
-  max-width: 800px;
-  margin: 4rem auto 0 auto;
-  backdrop-filter: blur(12px);
+  width: 100%;
+  hight: auto;
+  margin:  auto 0 auto;
 `;
 
 export const CTATitle = styled.h2`
