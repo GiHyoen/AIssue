@@ -390,7 +390,6 @@ export const ChatBubble = styled.div<{ sender: 'ai' | 'user' }>`
   line-height: 1.4;
 `;
 
-
 export const CTASection = styled.section`
   background-color: white;
   padding: 5rem 2rem;
